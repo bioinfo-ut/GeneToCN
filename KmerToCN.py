@@ -396,13 +396,13 @@ option1 = seq_files_arg is not None and gene_files_arg is not None and flanking_
 option2 = seq_files_arg is not None and kmer_db is not None and kmer_paths is not None
 option3 = list_file is not None and kmer_list is not None and kmer_paths is not None
 
-if sum([option1, option2, option3]) != 1 and test is None:
+if sum([option1, option2, option3]) != 1 and (test == False):
     print("Possible combinations of options:\n1) -g -f -s\n2) -db -kp -s\n3) -kl -kp -l")
     parser.print_usage()
     print("Use -h for more information")
     quit()
 
-if (option1 or option2) and test is None:
+if (option1 or option2) and (test == False):
     seq_files = parse_filenames(seq_files_arg)
     if option1:
         gene_files = parse_filenames(gene_files_arg)
