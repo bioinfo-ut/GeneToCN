@@ -110,6 +110,7 @@ def filter_kmers(gene, loc_strings, glistquery_command, max_count, out_file):
 
     # When glistquery has finished, keep those that are in the output (Filtering step: uniqueness, 1 mismatch)
     #removed = []
+    time_5 = time.time()
     with open(query_file, "r") as r:
         query_kmers = set()
         for line in r:
