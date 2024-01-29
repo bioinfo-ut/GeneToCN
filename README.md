@@ -83,7 +83,7 @@ An example:
 ## Cite
 GeneToCN method as well as the results of the validation are described in the preprint.
 
-Pajuste, F.-D., & Remm, M. (2023). GeneToCN: An alignment-free method for gene copy number estimation directly from next-generation sequencing reads. _bioRxiv_, 2023.05.31.543012. https://doi.org/10.1101/2023.05.31.543012
+Pajuste, FD., Remm, M. GeneToCN: an alignment-free method for gene copy number estimation directly from next-generation sequencing reads. _Sci Rep_ **13**, 17765 (2023). https://doi.org/10.1038/s41598-023-44636-z
 
 ## Contact information
 Fanny-Dhelia Pajuste, University of Tartu
