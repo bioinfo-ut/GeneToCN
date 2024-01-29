@@ -92,7 +92,7 @@ def filter_kmers(gene, loc_strings, glistquery_command, max_count, out_file):
             gc = get_gc_content(gc_sequence)
             # Filter out k-mers that are our of bounds for gc percentage value
             if gc > gc_max or gc < gc_min:
-                print("Filtered out with GC value {} (limits: {}-{})".format(gc, gc_min, gc_max))
+                #print("Filtered out with GC value {} (limits: {}-{})".format(gc, gc_min, gc_max))
                 continue
             location = ch + ":" + str(loc)
             kmer = seq[loc:(loc + k)]
@@ -101,14 +101,15 @@ def filter_kmers(gene, loc_strings, glistquery_command, max_count, out_file):
 
         if info:
             print("GC contents are calculated")
-            print("Kmers with GC content: {}".format(len(df_kmers.index)))
+            print("Kmers with GC content between limits: {}".format(len(df_kmers.index)))
         p.wait()
     if info:
         print("Glistquery is done")
     time_2 = time.time()
-    print("TIME: Running glistquery + calculating GC contents - %s" % convert_time(time_2 - time_1))
+    if info:
+        print("TIME: Running glistquery + calculating GC contents - %s" % convert_time(time_2 - time_1))
 
-    # When glistquery has finished, keep those that are in the output (Filtering step: uniqueness, 1 mismatch)
+    # When glistquery has finished, keep those that are in the output (Filtering step: uniqueness, mismatches)
     #removed = []
     time_5 = time.time()
     with open(query_file, "r") as r:
@@ -126,7 +127,8 @@ def filter_kmers(gene, loc_strings, glistquery_command, max_count, out_file):
     df_kmers_filtered.to_csv(out_file, index=False, sep="\t", header=False)
 
     time_6 = time.time()
-    print("TIME: Filtering and writing to file - %.2f" % (time_6 - time_5))
+    if info:
+        print("TIME: Filtering and writing to file - %.2f" % convert_time(time_6 - time_5))
 
 
 def convert_time(t):
@@ -160,10 +162,10 @@ def main():
 
     for region in regions:
         time_region_start = time.time()
-        loc_strings = region.split(" ")
+        loc_strings = region.split()
         region_type = loc_strings.pop(1)
         gene = loc_strings[0]
-        out_file = out + gene + "_kmers.txt"
+        out_file = out + gene + "_kmers.db"
         max_count = "1"
         if info:
             print("Finding unique k-mers for " + gene)
