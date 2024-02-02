@@ -24,7 +24,7 @@ def parse_arguments():
     parser.add_argument('-gc_max', '--gc_max', help='Maximum GC content allowed', type=int, default=65,
                         choices=range(40, 101))
     parser.add_argument('-mm', '--mismatches', help='Number of mismatches for glistquery', type=int, default=1,
-                        choices=range(0,2))
+                        choices=range(0, 2))
     # parser.add_argument('-if', '--infofile', help='File for information (default stdout)')
     parser.add_argument('-gt', '--genometester', help='Location for GenomeTester4 tools')
     parser.add_argument('-o', '--output', help='Prefix for output files')
@@ -92,7 +92,7 @@ def filter_kmers(gene, loc_strings, glistquery_command, max_count, out_file):
             gc = get_gc_content(gc_sequence)
             # Filter out k-mers that are our of bounds for gc percentage value
             if gc > gc_max or gc < gc_min:
-                #print("Filtered out with GC value {} (limits: {}-{})".format(gc, gc_min, gc_max))
+                # print("Filtered out with GC value {} (limits: {}-{})".format(gc, gc_min, gc_max))
                 continue
             location = ch + ":" + str(loc)
             kmer = seq[loc:(loc + k)]
@@ -110,7 +110,7 @@ def filter_kmers(gene, loc_strings, glistquery_command, max_count, out_file):
         print("TIME: Running glistquery + calculating GC contents - %s" % convert_time(time_2 - time_1))
 
     # When glistquery has finished, keep those that are in the output (Filtering step: uniqueness, mismatches)
-    #removed = []
+    # removed = []
     time_5 = time.time()
     with open(query_file, "r") as r:
         query_kmers = set()
@@ -128,7 +128,7 @@ def filter_kmers(gene, loc_strings, glistquery_command, max_count, out_file):
 
     time_6 = time.time()
     if info:
-        print("TIME: Filtering and writing to file - %.2f" % convert_time(time_6 - time_5))
+        print("TIME: Filtering and writing to file - %s" % convert_time(time_6 - time_5))
 
 
 def convert_time(t):
