@@ -13,25 +13,49 @@ conda create --name <env_name> biopython pandas matplotlib
 ```
 
 ### Creating a _k_-mer list for reference genome (needed for GeneToKmer):
-Outputs a binary file <output_prefix>_<k-mer length>.list, suggested k-mer length is 25
+Outputs a binary file <output_prefix>_<k-mer length>.list, the suggested k-mer length for human genome is 25
 ```
 glistmaker <reference_sequences> -w <k-mer length> -o <output_prefix>
 ```
 
-## Run:
+### Before running the programs:
 Activate the conda environment, if not already activated
 ```
 conda activate <env_name>
 ```
 
-### _K_-mer database creation
-_K_-mer databases for genes:
+## _K_-mer database creation
+### _K_-mer databases for genes:
 ```
 python GeneToKmer.py <region_file> <chr_reference_sequence>.fa <reference_kmer_list> -o <location_for_output_files> -i -gt <location_for_GenomeTester_source_code>
 ```
-Databases of flanking referenence _k_-mers:
+Needs to be run separately for each chromosome, requires the fasta sequence for only one chromosome. The region (gene) names have to be unique.
 
-Take a subset of at least 1000 reference _k_-mers from both flanking regions of each gene (a total of >2000 kmers) using the _k_-mers in "Kmer db/Ref kmer"s and create a separate file with flanking _k_-mers for each gene.
+Example of the region file (fields separated by a space):
+```
+AMY1 G 1:103655290-103664554 1:103687415-103696680 1:103750406-103758690
+AMY2A G 1:103616811-103625780
+AMY2B G 1:103553815-103579534
+```
+
+### Databases of flanking referenence _k_-mers:
+
+Option 1 (faster) - use premade _k_-mer databases for human genome:
+```
+python extract_flanking_kmers.py <region_file>
+```
+To change the default option for the number of flanking _k_-mers, use -_n_ <nr_of_flanking_kmers> (default: _n_=2000).
+
+The script takes a subset of at least _n_/2 reference _k_-mers from both sides of each gene (a total of _n_ kmers) using the _k_-mers in "Kmer_db/Ref_kmers" for human genome. One _k_-mer database is created for each gene (may contain the same set of _k_-mers for closely located genes).
+
+Option 2:
+
+Add flanking regions to the region file to create _k_-mer databases when running GeneToKmer.py
+```
+Flanking_AMY F 1:103500000-103550000 1:103760000-103800000
+```
+
+## Copy number estimation
 
 ### Additional files needed
 Cat together all the _k_-mer database files to be able to estimate all the copy numbers with the same run (the order is not important).
@@ -48,7 +72,8 @@ AMY2B AMY/AMY2B_kmers.db
 Flanking_NPY4R NPY4R/Flanking_NPY4R_NIPT_46M47M_kmers_cleaned.db
 NPY4R NPY4R/NPY4R_kmers.db
 ```
-### Copy number estimation
+
+### Running KmerToCN
 The program will create new directories (counts/ counter_errors/ plots/) into the specified output directory containing the _k_-mer counts, possible errors from the gmer_counter and plots for visual inspection of the normalized _k_-mer frequencies in the gene regions. 
 
 The copy number estimations are written in the outpur direction into file <output_prefix>_cn.txt
@@ -60,11 +85,11 @@ python KmerToCN.py -db <kmer_db> -kp <original_db_location_file> -s <fastq files
 
 
 ## _K_-mer databases
-_K_-mer databases and region files are included in the folder **Kmer db**.
+Some _K_-mer databases and region files are included in the folder **Kmer_db**.
 
-The _k_-mers in **Ref kmers** folder can be used for choosing reference k-mers from flanking regions.
+The _k_-mers in **Ref_kmers** folder can be used for choosing reference k-mers from flanking regions.
 
-**Gene kmers** folder contains _k_-mers used for the validation of the method.
+**Gene_kmers** folder contains _k_-mers used for the validation of the method.
 
 All _k_-mer databases are text files formatted in a similar way with one _k_-mer per row: 
 ```
