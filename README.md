@@ -40,7 +40,7 @@ AMY2B G 1:103553815-103579534
 
 ### Databases of flanking referenence _k_-mers:
 
-Option 1 (faster) - use premade _k_-mer databases for human genome:
+Option 1 (faster) - use premade _k_-mer databases for human genome (GRCh38):
 ```
 python extract_flanking_kmers.py <region_file>
 ```
