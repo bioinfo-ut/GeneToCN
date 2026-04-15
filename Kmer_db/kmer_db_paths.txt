@@ -1,0 +1,18 @@
+Flanking_AMY Kmer_db/Gene_kmers/AMY/Flanking_AMY_NIPT_103M_kmers_cleaned.db
+AMY1 Kmer_db/Gene_kmers/AMY/AMY1_kmers.db
+AMY2A Kmer_db/Gene_kmers/AMY/AMY2A_kmers.db
+AMY2B Kmer_db/Gene_kmers/AMY/AMY2B_kmers.db
+
+Flanking_SMN Kmer_db/Gene_kmers/SMN/Flanking_SMN_NIPT_69M71M_kmers_cleaned.db
+SMN1 Kmer_db/Gene_kmers/SMN/SMN1_mm0_kmers.db
+SMN2 Kmer_db/Gene_kmers/SMN/SMN2_mm0_kmers.db
+
+Flanking_NPY4R Kmer_db/Gene_kmers/NPY4R/Flanking_NPY4R_NIPT_46M47M_kmers_cleaned.db
+NPY4R Kmer_db/Gene_kmers/NPY4R/NPY4R_kmers.db
+
+Flanking_KIV Kmer_db/Gene_kmers/KIV-2/Flanking_LPA_NIPT_160M_kmers_cleaned.db
+KIV Kmer_db/Gene_kmers/KIV-2/KIV-2_kmers.db
+
+Flanking_FCGR3 Kmer_db/Gene_kmers/FCGR3/Flanking_FCGR3_NIPT_161M_kmers_cleaned.db
+FCGR3A Kmer_db/Gene_kmers/FCGR3/FCGR3A_kmers.db
+FCGR3B Kmer_db/Gene_kmers/FCGR3/FCGR3B_kmers.db
