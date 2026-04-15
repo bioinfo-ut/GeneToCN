@@ -354,9 +354,9 @@ def many_regions():
                 cn_out_str += "# Median frequency of reference k-mers: " + out_str
                 is_flanking = False
             else:
-                print(len(locations), len(values))
-                print(locations)
-                print(values)
+                #print(len(locations), len(values))
+                #print(locations)
+                #print(values)
                 gene_cn, out_str = get_median_and_CN(gene, locations, values, flanking_median)
                 cn_out_str += out_str
         if not print_kmer_cn:
